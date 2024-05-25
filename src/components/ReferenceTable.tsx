@@ -1,8 +1,6 @@
-import React from "react";
-
 export function ReferenceTable() {
   return (
-    <table className="mx-auto text-neutral-600">
+    <table className="mx-auto text-neutral-600 md:text-base text-xs">
       <thead className="bg-zinc-100 text-rose-400 ">
         <tr>
           <th className="px-6 py-2">IMC</th>

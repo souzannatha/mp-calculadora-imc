@@ -50,21 +50,42 @@ function App() {
       imc: imc,
       imcResult: imcResultString,
     });
+    event.currentTarget.reset();
+  }
+  function handleClickReset(event: React.MouseEvent<HTMLButtonElement>) {
+    event.preventDefault();
+    setIMCData(null);
   }
 
   return (
-    <main className="bg-white max-w-4xl mx-auto py-24 px-40">
+    <main className="bg-white max-w-4xl mx-auto md:py-24 md:px-40 px-5 py-10">
       <section id="form">
         <form onSubmit={handleSubmit}>
           <div>
             <Label text="Peso (kg)" htmlFor="weight" />
-            <Input name="weight" type="text" id="weight" className="mt-1" />
+            <Input
+              disabled={!!IMCData}
+              name="weight"
+              type="text"
+              id="weight"
+              className="mt-1"
+            />
           </div>
           <div className="mt-4">
             <Label text="Altura (cm)" htmlFor="height" />
-            <Input name="height" type="text" id="height" className="mt-1" />
+            <Input
+              disabled={!!IMCData}
+              name="height"
+              type="text"
+              id="height"
+              className="mt-1"
+            />
           </div>
-          <Button type="submit" text="Calcular" />
+          {IMCData ? (
+            <Button onClick={handleClickReset} type="button" text="Refazer" />
+          ) : (
+            <Button type="submit" text="Calcular" />
+          )}
         </form>
         <section id="result" className="py-10 px-4 h-40">
           {IMCData ? (
