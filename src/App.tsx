@@ -4,6 +4,7 @@ import { Input } from "./components/Input";
 import { ReferenceTable } from "./components/ReferenceTable";
 import { calculateIMC, imcResult } from "./lib/IMC";
 import { useState } from "react";
+import { ResultTable } from "./components/ResultTable";
 
 function App() {
   const [IMCData, setIMCData] = useState<null | {
@@ -66,9 +67,13 @@ function App() {
           <Button type="submit" text="Calcular" />
         </form>
         <section id="result" className="py-10 px-4 h-40">
-          <p className="text-center text-neutral-400 text-xl">
-            Saiba Agora se está no seu peso ideal!
-          </p>
+          {IMCData ? (
+            <ResultTable IMCData={IMCData} />
+          ) : (
+            <p className="text-center text-neutral-400 text-xl">
+              Saiba como está seu peso agora
+            </p>
+          )}
         </section>
         <section>
           <ReferenceTable />
